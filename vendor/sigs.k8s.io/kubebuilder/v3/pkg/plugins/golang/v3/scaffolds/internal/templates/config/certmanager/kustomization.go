@@ -19,14 +19,14 @@ package certmanager
 import (
 	"path/filepath"
 
-	"sigs.k8s.io/kubebuilder/v3/pkg/model/file"
+	"sigs.k8s.io/kubebuilder/v3/pkg/machinery"
 )
 
-var _ file.Template = &Kustomization{}
+var _ machinery.Template = &Kustomization{}
 
 // Kustomization scaffolds a file that defines the kustomization scheme for the certmanager folder
 type Kustomization struct {
-	file.TemplateMixin
+	machinery.TemplateMixin
 }
 
 // SetTemplateDefaults implements file.Template
@@ -36,6 +36,9 @@ func (f *Kustomization) SetTemplateDefaults() error {
 	}
 
 	f.TemplateBody = kustomizationTemplate
+
+	// If file exists (ex. because a webhook was already created), skip creation.
+	f.IfExistsAction = machinery.SkipFile
 
 	return nil
 }

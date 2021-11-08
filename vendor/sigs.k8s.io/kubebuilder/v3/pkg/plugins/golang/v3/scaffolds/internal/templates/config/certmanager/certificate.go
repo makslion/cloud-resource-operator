@@ -19,14 +19,14 @@ package certmanager
 import (
 	"path/filepath"
 
-	"sigs.k8s.io/kubebuilder/v3/pkg/model/file"
+	"sigs.k8s.io/kubebuilder/v3/pkg/machinery"
 )
 
-var _ file.Template = &Certificate{}
+var _ machinery.Template = &Certificate{}
 
 // Certificate scaffolds a file that defines the issuer CR and the certificate CR
 type Certificate struct {
-	file.TemplateMixin
+	machinery.TemplateMixin
 }
 
 // SetTemplateDefaults implements file.Template
@@ -36,6 +36,9 @@ func (f *Certificate) SetTemplateDefaults() error {
 	}
 
 	f.TemplateBody = certManagerTemplate
+
+	// If file exists (ex. because a webhook was already created), skip creation.
+	f.IfExistsAction = machinery.SkipFile
 
 	return nil
 }

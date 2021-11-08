@@ -127,6 +127,28 @@ github.com/blang/semver
 github.com/blang/semver/v4
 # github.com/cespare/xxhash/v2 v2.1.1
 github.com/cespare/xxhash/v2
+# github.com/cloudflare/cfssl v1.5.0
+github.com/cloudflare/cfssl/api
+github.com/cloudflare/cfssl/api/client
+github.com/cloudflare/cfssl/auth
+github.com/cloudflare/cfssl/certdb
+github.com/cloudflare/cfssl/cli
+github.com/cloudflare/cfssl/cli/genkey
+github.com/cloudflare/cfssl/config
+github.com/cloudflare/cfssl/crypto/pkcs7
+github.com/cloudflare/cfssl/csr
+github.com/cloudflare/cfssl/errors
+github.com/cloudflare/cfssl/helpers
+github.com/cloudflare/cfssl/helpers/derhelpers
+github.com/cloudflare/cfssl/info
+github.com/cloudflare/cfssl/initca
+github.com/cloudflare/cfssl/log
+github.com/cloudflare/cfssl/ocsp/config
+github.com/cloudflare/cfssl/selfsign
+github.com/cloudflare/cfssl/signer
+github.com/cloudflare/cfssl/signer/local
+github.com/cloudflare/cfssl/signer/remote
+github.com/cloudflare/cfssl/signer/universal
 # github.com/containerd/cgroups v0.0.0-20190919134610-bf292b21730f
 github.com/containerd/cgroups/stats/v1
 # github.com/containerd/containerd v1.3.4
@@ -254,6 +276,8 @@ github.com/fsnotify/fsnotify
 # github.com/ghodss/yaml v1.0.1-0.20180820084758-c7ce16629ff4
 ## explicit
 github.com/ghodss/yaml
+# github.com/go-errors/errors v1.0.1
+github.com/go-errors/errors
 # github.com/go-logr/logr v0.3.0
 github.com/go-logr/logr
 # github.com/go-logr/zapr v0.1.0
@@ -262,7 +286,7 @@ github.com/go-logr/zapr
 github.com/go-openapi/jsonpointer
 # github.com/go-openapi/jsonreference v0.19.3
 github.com/go-openapi/jsonreference
-# github.com/go-openapi/spec v0.19.3
+# github.com/go-openapi/spec v0.19.5
 github.com/go-openapi/spec
 # github.com/go-openapi/swag v0.19.5
 github.com/go-openapi/swag
@@ -270,6 +294,8 @@ github.com/go-openapi/swag
 github.com/gobuffalo/envy
 # github.com/gobuffalo/flect v0.2.2
 github.com/gobuffalo/flect
+# github.com/gobuffalo/here v0.6.0
+github.com/gobuffalo/here
 # github.com/gobwas/glob v0.2.3
 github.com/gobwas/glob
 github.com/gobwas/glob/compiler
@@ -295,6 +321,15 @@ github.com/golang/protobuf/ptypes/duration
 github.com/golang/protobuf/ptypes/timestamp
 # github.com/google/btree v1.0.0
 github.com/google/btree
+# github.com/google/certificate-transparency-go v1.0.21
+github.com/google/certificate-transparency-go
+github.com/google/certificate-transparency-go/asn1
+github.com/google/certificate-transparency-go/client
+github.com/google/certificate-transparency-go/client/configpb
+github.com/google/certificate-transparency-go/jsonclient
+github.com/google/certificate-transparency-go/tls
+github.com/google/certificate-transparency-go/x509
+github.com/google/certificate-transparency-go/x509/pkix
 # github.com/google/go-cmp v0.5.2
 github.com/google/go-cmp/cmp
 github.com/google/go-cmp/cmp/internal/diff
@@ -350,6 +385,7 @@ github.com/jmespath/go-jmespath
 # github.com/jmoiron/sqlx v1.2.0
 github.com/jmoiron/sqlx
 github.com/jmoiron/sqlx/reflectx
+github.com/jmoiron/sqlx/types
 # github.com/joho/godotenv v1.3.0
 github.com/joho/godotenv
 # github.com/json-iterator/go v1.1.10
@@ -375,6 +411,14 @@ github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
 # github.com/markbates/inflect v1.0.4
 github.com/markbates/inflect
+# github.com/markbates/pkger v0.17.1
+github.com/markbates/pkger
+github.com/markbates/pkger/here
+github.com/markbates/pkger/internal/maps
+github.com/markbates/pkger/pkging
+github.com/markbates/pkger/pkging/embed
+github.com/markbates/pkger/pkging/mem
+github.com/markbates/pkger/pkging/stdos
 # github.com/mattn/go-colorable v0.1.8
 github.com/mattn/go-colorable
 # github.com/mattn/go-isatty v0.0.12
@@ -399,6 +443,8 @@ github.com/moby/term/windows
 github.com/modern-go/concurrent
 # github.com/modern-go/reflect2 v1.0.1
 github.com/modern-go/reflect2
+# github.com/monochromegane/go-gitignore v0.0.0-20200626010858-205db1a8cc00
+github.com/monochromegane/go-gitignore
 # github.com/morikuni/aec v1.0.0
 github.com/morikuni/aec
 # github.com/nxadm/tail v1.4.4
@@ -462,13 +508,14 @@ github.com/openshift/api/route/v1
 ## explicit
 github.com/openshift/cloud-credential-operator/pkg/apis
 github.com/openshift/cloud-credential-operator/pkg/apis/cloudcredential/v1
-# github.com/operator-framework/api v0.5.3
+# github.com/operator-framework/api v0.8.0
 github.com/operator-framework/api/pkg/apis/scorecard/v1alpha3
 github.com/operator-framework/api/pkg/lib/version
 github.com/operator-framework/api/pkg/manifests
 github.com/operator-framework/api/pkg/operators
 github.com/operator-framework/api/pkg/operators/v1
 github.com/operator-framework/api/pkg/operators/v1alpha1
+github.com/operator-framework/api/pkg/operators/v1alpha2
 github.com/operator-framework/api/pkg/validation
 github.com/operator-framework/api/pkg/validation/errors
 github.com/operator-framework/api/pkg/validation/interfaces
@@ -482,20 +529,18 @@ github.com/operator-framework/operator-registry/pkg/image/execregistry
 github.com/operator-framework/operator-registry/pkg/lib/bundle
 github.com/operator-framework/operator-registry/pkg/lib/validation
 github.com/operator-framework/operator-registry/pkg/registry
-# github.com/operator-framework/operator-sdk v1.5.0
+# github.com/operator-framework/operator-sdk v1.6.1
 ## explicit
 github.com/operator-framework/operator-sdk/cmd/operator-sdk
 github.com/operator-framework/operator-sdk/internal/annotations/metrics
 github.com/operator-framework/operator-sdk/internal/annotations/scorecard
 github.com/operator-framework/operator-sdk/internal/bindata/olm
-github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha/config3alphato3
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle/validate
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle/validate/internal
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/cleanup
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/cli
-github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/completion
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/generate
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/generate/bundle
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/generate/internal
@@ -514,9 +559,6 @@ github.com/operator-framework/operator-sdk/internal/generate/clusterserviceversi
 github.com/operator-framework/operator-sdk/internal/generate/collector
 github.com/operator-framework/operator-sdk/internal/generate/internal
 github.com/operator-framework/operator-sdk/internal/generate/packagemanifest
-github.com/operator-framework/operator-sdk/internal/kubebuilder/cmdutil
-github.com/operator-framework/operator-sdk/internal/kubebuilder/filesystem
-github.com/operator-framework/operator-sdk/internal/kubebuilder/machinery
 github.com/operator-framework/operator-sdk/internal/markers
 github.com/operator-framework/operator-sdk/internal/olm/client
 github.com/operator-framework/operator-sdk/internal/olm/installer
@@ -534,8 +576,6 @@ github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/crd
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/kdefault
-github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/manager
-github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/prometheus
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/rbac
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/samples
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/config/testing
@@ -544,26 +584,23 @@ github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/molecule/mkind
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/playbooks
 github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds/internal/templates/roles
-github.com/operator-framework/operator-sdk/internal/plugins/envtest
-github.com/operator-framework/operator-sdk/internal/plugins/golang/v2
-github.com/operator-framework/operator-sdk/internal/plugins/golang/v3
+github.com/operator-framework/operator-sdk/internal/plugins/envtest/v1
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/chartutil
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/crd
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/kdefault
-github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/manager
-github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/prometheus
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/rbac
 github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/samples
-github.com/operator-framework/operator-sdk/internal/plugins/manifests
 github.com/operator-framework/operator-sdk/internal/plugins/manifests/v2
-github.com/operator-framework/operator-sdk/internal/plugins/scorecard
+github.com/operator-framework/operator-sdk/internal/plugins/manifests/v2/templates/config/manifests
+github.com/operator-framework/operator-sdk/internal/plugins/manifests/v2/templates/config/samples
 github.com/operator-framework/operator-sdk/internal/plugins/scorecard/v2
-github.com/operator-framework/operator-sdk/internal/plugins/util/kustomize
+github.com/operator-framework/operator-sdk/internal/plugins/util
 github.com/operator-framework/operator-sdk/internal/registry
 github.com/operator-framework/operator-sdk/internal/scorecard
+github.com/operator-framework/operator-sdk/internal/util
 github.com/operator-framework/operator-sdk/internal/util/k8sutil
 github.com/operator-framework/operator-sdk/internal/util/projutil
 github.com/operator-framework/operator-sdk/internal/version
@@ -623,12 +660,35 @@ github.com/stretchr/testify/assert
 github.com/stretchr/testify/require
 # github.com/subosito/gotenv v1.2.0
 github.com/subosito/gotenv
+# github.com/thoas/go-funk v0.8.0
+github.com/thoas/go-funk
+# github.com/weppos/publicsuffix-go v0.13.0
+github.com/weppos/publicsuffix-go/publicsuffix
 # github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f
 github.com/xeipuuv/gojsonpointer
 # github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415
 github.com/xeipuuv/gojsonreference
 # github.com/xeipuuv/gojsonschema v1.2.0
 github.com/xeipuuv/gojsonschema
+# github.com/xlab/treeprint v0.0.0-20181112141820-a009c3971eca
+github.com/xlab/treeprint
+# github.com/zmap/zcrypto v0.0.0-20200911161511-43ff0ea04f21
+github.com/zmap/zcrypto/json
+github.com/zmap/zcrypto/util
+github.com/zmap/zcrypto/x509
+github.com/zmap/zcrypto/x509/ct
+github.com/zmap/zcrypto/x509/pkix
+# github.com/zmap/zlint/v2 v2.2.1
+github.com/zmap/zlint/v2
+github.com/zmap/zlint/v2/lint
+github.com/zmap/zlint/v2/lints/apple
+github.com/zmap/zlint/v2/lints/cabf_br
+github.com/zmap/zlint/v2/lints/cabf_ev
+github.com/zmap/zlint/v2/lints/community
+github.com/zmap/zlint/v2/lints/etsi
+github.com/zmap/zlint/v2/lints/mozilla
+github.com/zmap/zlint/v2/lints/rfc
+github.com/zmap/zlint/v2/util
 # go.etcd.io/bbolt v1.3.5
 go.etcd.io/bbolt
 # go.opencensus.io v0.22.3
@@ -650,10 +710,15 @@ go.uber.org/zap/internal/bufferpool
 go.uber.org/zap/internal/color
 go.uber.org/zap/internal/exit
 go.uber.org/zap/zapcore
-# golang.org/x/crypto v0.0.0-20201002170205-7f63de1d35b0
+# golang.org/x/crypto v0.0.0-20201012173705-84dcc777aaee
 golang.org/x/crypto/bcrypt
 golang.org/x/crypto/blowfish
 golang.org/x/crypto/cast5
+golang.org/x/crypto/cryptobyte
+golang.org/x/crypto/cryptobyte/asn1
+golang.org/x/crypto/ed25519
+golang.org/x/crypto/ed25519/internal/edwards25519
+golang.org/x/crypto/ocsp
 golang.org/x/crypto/openpgp
 golang.org/x/crypto/openpgp/armor
 golang.org/x/crypto/openpgp/clearsign
@@ -757,7 +822,7 @@ golang.org/x/xerrors
 golang.org/x/xerrors/internal
 # gomodules.xyz/jsonpatch/v2 v2.0.1
 gomodules.xyz/jsonpatch/v2
-# google.golang.org/appengine v1.6.5
+# google.golang.org/appengine v1.6.6
 google.golang.org/appengine
 google.golang.org/appengine/internal
 google.golang.org/appengine/internal/app_identity
@@ -1182,7 +1247,7 @@ k8s.io/kubectl/pkg/util/slice
 k8s.io/kubectl/pkg/util/templates
 k8s.io/kubectl/pkg/util/term
 k8s.io/kubectl/pkg/validation
-# k8s.io/utils v0.0.0-20201110183641-67b214c5f920
+# k8s.io/utils v0.0.0-20210111153108-fddb29f9d009
 k8s.io/utils/buffer
 k8s.io/utils/exec
 k8s.io/utils/integer
@@ -1240,22 +1305,34 @@ sigs.k8s.io/controller-tools/pkg/crd/markers
 sigs.k8s.io/controller-tools/pkg/genall
 sigs.k8s.io/controller-tools/pkg/loader
 sigs.k8s.io/controller-tools/pkg/markers
+sigs.k8s.io/controller-tools/pkg/rbac
 sigs.k8s.io/controller-tools/pkg/version
-# sigs.k8s.io/kubebuilder/v3 v3.0.0-alpha.0.0.20210309225704-dd3942c97cf5
+sigs.k8s.io/controller-tools/pkg/webhook
+# sigs.k8s.io/kubebuilder/v3 v3.0.0-alpha.0.0.20210411191801-c7525d748153
+sigs.k8s.io/kubebuilder/v3
 sigs.k8s.io/kubebuilder/v3/pkg/cli
-sigs.k8s.io/kubebuilder/v3/pkg/cli/internal/config
+sigs.k8s.io/kubebuilder/v3/pkg/cli/alpha/config-gen
 sigs.k8s.io/kubebuilder/v3/pkg/config
+sigs.k8s.io/kubebuilder/v3/pkg/config/store
+sigs.k8s.io/kubebuilder/v3/pkg/config/store/yaml
 sigs.k8s.io/kubebuilder/v3/pkg/config/v2
 sigs.k8s.io/kubebuilder/v3/pkg/config/v3
 sigs.k8s.io/kubebuilder/v3/pkg/internal/validation
-sigs.k8s.io/kubebuilder/v3/pkg/model
-sigs.k8s.io/kubebuilder/v3/pkg/model/file
+sigs.k8s.io/kubebuilder/v3/pkg/machinery
 sigs.k8s.io/kubebuilder/v3/pkg/model/resource
 sigs.k8s.io/kubebuilder/v3/pkg/model/stage
 sigs.k8s.io/kubebuilder/v3/pkg/plugin
 sigs.k8s.io/kubebuilder/v3/pkg/plugin/util
 sigs.k8s.io/kubebuilder/v3/pkg/plugins
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1/scaffolds
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1/scaffolds/internal/templates/config/kdefault
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1/scaffolds/internal/templates/config/manager
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1/scaffolds/internal/templates/config/prometheus
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/common/kustomize/v1/scaffolds/internal/templates/config/rbac
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/declarative/v1
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/declarative/v1/internal/templates
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates
@@ -1279,18 +1356,11 @@ sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/co
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd/patches
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/kdefault
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/manager
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/prometheus
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/rbac
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/samples
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/webhook
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/controllers
 sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/hack
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/cmdutil
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/filesystem
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/machinery
-sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/util
-sigs.k8s.io/kubebuilder/v3/plugins/addon
 # sigs.k8s.io/kustomize v2.0.3+incompatible
 sigs.k8s.io/kustomize/pkg/commands/build
 sigs.k8s.io/kustomize/pkg/constants
@@ -1314,6 +1384,34 @@ sigs.k8s.io/kustomize/pkg/transformers
 sigs.k8s.io/kustomize/pkg/transformers/config
 sigs.k8s.io/kustomize/pkg/transformers/config/defaultconfig
 sigs.k8s.io/kustomize/pkg/types
+# sigs.k8s.io/kustomize/kyaml v0.10.10
+sigs.k8s.io/kustomize/kyaml/errors
+sigs.k8s.io/kustomize/kyaml/ext
+sigs.k8s.io/kustomize/kyaml/fieldmeta
+sigs.k8s.io/kustomize/kyaml/fn/framework
+sigs.k8s.io/kustomize/kyaml/kio
+sigs.k8s.io/kustomize/kyaml/kio/filters
+sigs.k8s.io/kustomize/kyaml/kio/kioutil
+sigs.k8s.io/kustomize/kyaml/openapi
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi/v1184
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi/v1186
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi/v1188
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi/v1190
+sigs.k8s.io/kustomize/kyaml/openapi/kubernetesapi/v1191
+sigs.k8s.io/kustomize/kyaml/openapi/kustomizationapi
+sigs.k8s.io/kustomize/kyaml/sets
+sigs.k8s.io/kustomize/kyaml/yaml
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/labels
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/selection
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/util/errors
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/util/sets
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/util/validation
+sigs.k8s.io/kustomize/kyaml/yaml/internal/k8sgen/pkg/util/validation/field
+sigs.k8s.io/kustomize/kyaml/yaml/merge2
+sigs.k8s.io/kustomize/kyaml/yaml/merge3
+sigs.k8s.io/kustomize/kyaml/yaml/schema
+sigs.k8s.io/kustomize/kyaml/yaml/walk
 # sigs.k8s.io/structured-merge-diff/v4 v4.0.2
 sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.2.0
