@@ -156,7 +156,7 @@ test/unit/ci: test/unit
 .PHONY: image/build
 image/build: build
 	echo "build image ${OPERATOR_IMG}"
-	docker build . -t ${OPERATOR_IMG}
+	docker build -t ${OPERATOR_IMG} .
 
 .PHONY: image/push
 image/push: image/build
