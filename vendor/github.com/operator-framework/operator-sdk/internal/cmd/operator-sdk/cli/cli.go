@@ -15,6 +15,15 @@
 package cli
 
 import (
+	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	"sigs.k8s.io/kubebuilder/v3/pkg/cli"
+	cfgv2 "sigs.k8s.io/kubebuilder/v3/pkg/config/v2"
+	cfgv3 "sigs.k8s.io/kubebuilder/v3/pkg/config/v3"
+
+	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha"
+	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha/config3alphato3"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/cleanup"
 	"github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/completion"
@@ -28,15 +37,10 @@ import (
 	golangv3 "github.com/operator-framework/operator-sdk/internal/plugins/golang/v3"
 	helmv1 "github.com/operator-framework/operator-sdk/internal/plugins/helm/v1"
 	"github.com/operator-framework/operator-sdk/internal/util/projutil"
-
-	log "github.com/sirupsen/logrus"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
-	"sigs.k8s.io/kubebuilder/v2/pkg/cli"
-	"sigs.k8s.io/kubebuilder/v2/pkg/model/config"
 )
 
 var commands = []*cobra.Command{
+	alpha.NewCmd(),
 	bundle.NewCmd(),
 	cleanup.NewCmd(),
 	completion.NewCmd(),
@@ -58,15 +62,15 @@ func GetPluginsCLIAndRoot() (cli.CLI, *cobra.Command) {
 	c, err := cli.New(
 		cli.WithCommandName("operator-sdk"),
 		cli.WithVersion(makeVersionString()),
-		cli.WithDefaultProjectVersion(config.Version3Alpha),
+		cli.WithDefaultProjectVersion(cfgv3.Version),
 		cli.WithPlugins(
 			&golangv2.Plugin{},
 			&golangv3.Plugin{},
 			&helmv1.Plugin{},
 			&ansiblev1.Plugin{},
 		),
-		cli.WithDefaultPlugins(config.Version2, &golangv2.Plugin{}),
-		cli.WithDefaultPlugins(config.Version3Alpha, &golangv3.Plugin{}),
+		cli.WithDefaultPlugins(cfgv2.Version, &golangv2.Plugin{}),
+		cli.WithDefaultPlugins(cfgv3.Version, &golangv3.Plugin{}),
 		cli.WithExtraCommands(commands...),
 	)
 	if err != nil {
@@ -96,4 +100,6 @@ func rootPersistentPreRun(cmd *cobra.Command, args []string) {
 		log.SetLevel(log.DebugLevel)
 		log.Debug("Debug logging is set")
 	}
+
+	config3alphato3.RootPersistentPreRun(cmd, args)
 }

@@ -20,7 +20,7 @@ package templates
 import (
 	"errors"
 
-	"sigs.k8s.io/kubebuilder/v2/pkg/model/file"
+	"sigs.k8s.io/kubebuilder/v3/pkg/model/file"
 )
 
 var _ file.Template = &Makefile{}
@@ -99,8 +99,6 @@ docker-build:
 docker-push:
 	docker push ${IMG}
 
-PATH  := $(PATH):$(PWD)/bin
-SHELL := env PATH=$(PATH) /bin/sh
 OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 ARCH := $(shell uname -m | sed 's/x86_64/amd64/')
 

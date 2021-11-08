@@ -23,13 +23,15 @@ import (
 	"os"
 	"path/filepath"
 
-	"sigs.k8s.io/kubebuilder/v2/pkg/model"
-	"sigs.k8s.io/kubebuilder/v2/pkg/model/config"
-	"sigs.k8s.io/kubebuilder/v2/pkg/model/resource"
+	"helm.sh/helm/v3/pkg/chart"
+	"helm.sh/helm/v3/pkg/chartutil"
+	"sigs.k8s.io/kubebuilder/v3/pkg/config"
+	"sigs.k8s.io/kubebuilder/v3/pkg/model"
+	"sigs.k8s.io/kubebuilder/v3/pkg/model/resource"
 
 	"github.com/operator-framework/operator-sdk/internal/kubebuilder/cmdutil"
 	"github.com/operator-framework/operator-sdk/internal/kubebuilder/machinery"
-	"github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/chartutil"
+	internalchartutil "github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/chartutil"
 	"github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates"
 	"github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/crd"
 	"github.com/operator-framework/operator-sdk/internal/plugins/helm/v1/scaffolds/internal/templates/config/rbac"
@@ -41,15 +43,17 @@ var _ cmdutil.Scaffolder = &apiScaffolder{}
 // apiScaffolder contains configuration for generating scaffolding for Go type
 // representing the API and controller that implements the behavior for the API.
 type apiScaffolder struct {
-	config *config.Config
-	opts   chartutil.CreateOptions
+	config   config.Config
+	resource *resource.Resource
+	chrt     *chart.Chart
 }
 
 // NewAPIScaffolder returns a new Scaffolder for API/controller creation operations
-func NewAPIScaffolder(config *config.Config, opts chartutil.CreateOptions) cmdutil.Scaffolder {
+func NewAPIScaffolder(config config.Config, res *resource.Resource, chrt *chart.Chart) cmdutil.Scaffolder {
 	return &apiScaffolder{
-		config: config,
-		opts:   opts,
+		config:   config,
+		resource: res,
+		chrt:     chrt,
 	}
 }
 
@@ -66,37 +70,36 @@ func (s *apiScaffolder) newUniverse(r *resource.Resource) *model.Universe {
 }
 
 func (s *apiScaffolder) scaffold() error {
+	if s.resource == nil {
+		return errors.New("resource must not be nil")
+	}
+
+	if err := s.config.UpdateResource(*s.resource); err != nil {
+		return err
+	}
+	// Path for file builders.
+	chartPath := filepath.Join(internalchartutil.HelmChartsDir, s.chrt.Name())
+
+	// Write the chart to disk.
 	projectDir, err := os.Getwd()
 	if err != nil {
 		return err
 	}
-	r, chrt, err := chartutil.CreateChart(projectDir, s.opts)
-	if err != nil {
+	absChartDir := filepath.Join(projectDir, internalchartutil.HelmChartsDir)
+	if err := chartutil.SaveDir(s.chrt, absChartDir); err != nil {
 		return err
 	}
+	fmt.Println("Created", chartPath)
 
-	// Check that resource doesn't exist
-	if s.config.HasResource(r.GVK()) {
-		return errors.New("the API resource already exists")
-	}
-	// Check that the provided group can be added to the project
-	if !s.config.MultiGroup && len(s.config.Resources) != 0 && !s.config.HasGroup(r.Group) {
-		return errors.New("multiple groups are not allowed by default, to enable multi-group set 'multigroup: true' in your PROJECT file")
-	}
-
-	res := r.NewResource(s.config, true)
-	s.config.UpdateResources(res.GVK())
-
-	chartPath := filepath.Join(chartutil.HelmChartsDir, chrt.Metadata.Name)
 	if err := machinery.NewScaffold().Execute(
-		s.newUniverse(res),
+		s.newUniverse(s.resource),
 		&templates.WatchesUpdater{ChartPath: chartPath},
-		&crd.CRD{CRDVersion: s.opts.CRDVersion},
+		&crd.CRD{CRDVersion: s.resource.API.CRDVersion},
 		&crd.Kustomization{},
 		&rbac.CRDEditorRole{},
 		&rbac.CRDViewerRole{},
-		&rbac.ManagerRoleUpdater{Chart: chrt},
-		&samples.CRDSample{ChartPath: chartPath, Chart: chrt},
+		&rbac.ManagerRoleUpdater{Chart: s.chrt},
+		&samples.CRDSample{ChartPath: chartPath, Chart: s.chrt},
 	); err != nil {
 		return fmt.Errorf("error scaffolding APIs: %v", err)
 	}

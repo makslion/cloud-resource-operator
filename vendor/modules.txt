@@ -407,7 +407,7 @@ github.com/nxadm/tail/ratelimiter
 github.com/nxadm/tail/util
 github.com/nxadm/tail/watch
 github.com/nxadm/tail/winfile
-# github.com/onsi/ginkgo v1.14.1
+# github.com/onsi/ginkgo v1.15.0
 ## explicit
 github.com/onsi/ginkgo
 github.com/onsi/ginkgo/config
@@ -428,7 +428,7 @@ github.com/onsi/ginkgo/reporters/stenographer
 github.com/onsi/ginkgo/reporters/stenographer/support/go-colorable
 github.com/onsi/ginkgo/reporters/stenographer/support/go-isatty
 github.com/onsi/ginkgo/types
-# github.com/onsi/gomega v1.10.2
+# github.com/onsi/gomega v1.10.5
 ## explicit
 github.com/onsi/gomega
 github.com/onsi/gomega/format
@@ -482,12 +482,14 @@ github.com/operator-framework/operator-registry/pkg/image/execregistry
 github.com/operator-framework/operator-registry/pkg/lib/bundle
 github.com/operator-framework/operator-registry/pkg/lib/validation
 github.com/operator-framework/operator-registry/pkg/registry
-# github.com/operator-framework/operator-sdk v1.4.0
+# github.com/operator-framework/operator-sdk v1.5.0
 ## explicit
 github.com/operator-framework/operator-sdk/cmd/operator-sdk
 github.com/operator-framework/operator-sdk/internal/annotations/metrics
 github.com/operator-framework/operator-sdk/internal/annotations/scorecard
 github.com/operator-framework/operator-sdk/internal/bindata/olm
+github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha
+github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/alpha/config3alphato3
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle/validate
 github.com/operator-framework/operator-sdk/internal/cmd/operator-sdk/bundle/validate/internal
@@ -668,6 +670,8 @@ golang.org/x/crypto/ssh/terminal
 golang.org/x/lint
 golang.org/x/lint/golint
 # golang.org/x/mod v0.3.0
+golang.org/x/mod/internal/lazyregexp
+golang.org/x/mod/modfile
 golang.org/x/mod/module
 golang.org/x/mod/semver
 # golang.org/x/net v0.0.0-20210614182718-04defd469f4e
@@ -690,7 +694,7 @@ golang.org/x/oauth2/google
 golang.org/x/oauth2/internal
 golang.org/x/oauth2/jws
 golang.org/x/oauth2/jwt
-# golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
+# golang.org/x/sync v0.0.0-20201020160332-67f06af15bc9
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
 # golang.org/x/sys v0.0.0-20210423082822-04245dca01da
@@ -721,7 +725,7 @@ golang.org/x/text/unicode/norm
 golang.org/x/text/width
 # golang.org/x/time v0.0.0-20200630173020-3af7569d3a1e
 golang.org/x/time/rate
-# golang.org/x/tools v0.0.0-20201014231627-1610a49f37af
+# golang.org/x/tools v0.0.0-20201224043029-2b0845dc783e
 golang.org/x/tools/go/analysis
 golang.org/x/tools/go/analysis/passes/inspect
 golang.org/x/tools/go/ast/astutil
@@ -914,7 +918,7 @@ honnef.co/go/tools/staticcheck
 honnef.co/go/tools/stylecheck
 honnef.co/go/tools/unused
 honnef.co/go/tools/version
-# k8s.io/api v0.20.1
+# k8s.io/api v0.20.2
 ## explicit
 k8s.io/api/admission/v1
 k8s.io/api/admission/v1beta1
@@ -962,7 +966,7 @@ k8s.io/api/scheduling/v1beta1
 k8s.io/api/storage/v1
 k8s.io/api/storage/v1alpha1
 k8s.io/api/storage/v1beta1
-# k8s.io/apiextensions-apiserver v0.20.1
+# k8s.io/apiextensions-apiserver v0.20.2
 ## explicit
 k8s.io/apiextensions-apiserver/pkg/apihelpers
 k8s.io/apiextensions-apiserver/pkg/apis/apiextensions
@@ -979,7 +983,7 @@ k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/scheme
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/typed/apiextensions/v1
 k8s.io/apiextensions-apiserver/pkg/client/clientset/clientset/typed/apiextensions/v1beta1
-# k8s.io/apimachinery v0.20.1
+# k8s.io/apimachinery v0.20.2
 ## explicit
 k8s.io/apimachinery/pkg/api/equality
 k8s.io/apimachinery/pkg/api/errors
@@ -1036,9 +1040,9 @@ k8s.io/apimachinery/pkg/watch
 k8s.io/apimachinery/third_party/forked/golang/json
 k8s.io/apimachinery/third_party/forked/golang/netutil
 k8s.io/apimachinery/third_party/forked/golang/reflect
-# k8s.io/apiserver v0.20.1 => k8s.io/apiserver v0.0.0-20191016112112-5190913f932d
+# k8s.io/apiserver v0.20.2 => k8s.io/apiserver v0.0.0-20191016112112-5190913f932d
 k8s.io/apiserver/pkg/util/webhook
-# k8s.io/cli-runtime v0.20.1
+# k8s.io/cli-runtime v0.20.2
 k8s.io/cli-runtime/pkg/genericclioptions
 k8s.io/cli-runtime/pkg/kustomize
 k8s.io/cli-runtime/pkg/kustomize/k8sdeps
@@ -1153,7 +1157,7 @@ k8s.io/client-go/util/jsonpath
 k8s.io/client-go/util/keyutil
 k8s.io/client-go/util/retry
 k8s.io/client-go/util/workqueue
-# k8s.io/component-base v0.20.1 => k8s.io/component-base v0.0.0-20191016111319-039242c015a9
+# k8s.io/component-base v0.20.2 => k8s.io/component-base v0.0.0-20191016111319-039242c015a9
 k8s.io/component-base/version
 # k8s.io/klog/v2 v2.4.0
 k8s.io/klog/v2
@@ -1167,7 +1171,7 @@ k8s.io/kube-openapi/pkg/validation/spec
 k8s.io/kube-openapi/pkg/validation/strfmt
 k8s.io/kube-openapi/pkg/validation/strfmt/bson
 k8s.io/kube-openapi/pkg/validation/validate
-# k8s.io/kubectl v0.20.1
+# k8s.io/kubectl v0.20.2
 k8s.io/kubectl/pkg/cmd/util
 k8s.io/kubectl/pkg/scheme
 k8s.io/kubectl/pkg/util/deployment
@@ -1184,7 +1188,7 @@ k8s.io/utils/exec
 k8s.io/utils/integer
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# sigs.k8s.io/controller-runtime v0.8.0 => sigs.k8s.io/controller-runtime v0.6.4
+# sigs.k8s.io/controller-runtime v0.8.2 => sigs.k8s.io/controller-runtime v0.6.4
 ## explicit
 sigs.k8s.io/controller-runtime
 sigs.k8s.io/controller-runtime/pkg/builder
@@ -1230,58 +1234,63 @@ sigs.k8s.io/controller-runtime/pkg/webhook/admission
 sigs.k8s.io/controller-runtime/pkg/webhook/conversion
 sigs.k8s.io/controller-runtime/pkg/webhook/internal/certwatcher
 sigs.k8s.io/controller-runtime/pkg/webhook/internal/metrics
-# sigs.k8s.io/controller-tools v0.4.1 => sigs.k8s.io/controller-tools v0.2.2
+# sigs.k8s.io/controller-tools v0.5.0 => sigs.k8s.io/controller-tools v0.2.2
 sigs.k8s.io/controller-tools/pkg/crd
 sigs.k8s.io/controller-tools/pkg/crd/markers
 sigs.k8s.io/controller-tools/pkg/genall
 sigs.k8s.io/controller-tools/pkg/loader
 sigs.k8s.io/controller-tools/pkg/markers
 sigs.k8s.io/controller-tools/pkg/version
-# sigs.k8s.io/kubebuilder/v2 v2.3.2-0.20201214213149-0a807f4e9428
-sigs.k8s.io/kubebuilder/v2/pkg/cli
-sigs.k8s.io/kubebuilder/v2/pkg/cli/internal/config
-sigs.k8s.io/kubebuilder/v2/pkg/internal/validation
-sigs.k8s.io/kubebuilder/v2/pkg/model
-sigs.k8s.io/kubebuilder/v2/pkg/model/config
-sigs.k8s.io/kubebuilder/v2/pkg/model/file
-sigs.k8s.io/kubebuilder/v2/pkg/model/resource
-sigs.k8s.io/kubebuilder/v2/pkg/plugin
-sigs.k8s.io/kubebuilder/v2/pkg/plugins
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/api
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/certmanager
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/crd
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/crd/patches
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/kdefault
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/manager
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/prometheus
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/rbac
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/samples
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/config/webhook
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/controllers
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v2/scaffolds/internal/templates/hack
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/api
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/certmanager
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd/patches
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/kdefault
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/manager
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/prometheus
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/rbac
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/samples
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/config/webhook
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/controllers
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/golang/v3/scaffolds/internal/templates/hack
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/internal/cmdutil
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/internal/filesystem
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/internal/machinery
-sigs.k8s.io/kubebuilder/v2/pkg/plugins/internal/util
-sigs.k8s.io/kubebuilder/v2/plugins/addon
+# sigs.k8s.io/kubebuilder/v3 v3.0.0-alpha.0.0.20210309225704-dd3942c97cf5
+sigs.k8s.io/kubebuilder/v3/pkg/cli
+sigs.k8s.io/kubebuilder/v3/pkg/cli/internal/config
+sigs.k8s.io/kubebuilder/v3/pkg/config
+sigs.k8s.io/kubebuilder/v3/pkg/config/v2
+sigs.k8s.io/kubebuilder/v3/pkg/config/v3
+sigs.k8s.io/kubebuilder/v3/pkg/internal/validation
+sigs.k8s.io/kubebuilder/v3/pkg/model
+sigs.k8s.io/kubebuilder/v3/pkg/model/file
+sigs.k8s.io/kubebuilder/v3/pkg/model/resource
+sigs.k8s.io/kubebuilder/v3/pkg/model/stage
+sigs.k8s.io/kubebuilder/v3/pkg/plugin
+sigs.k8s.io/kubebuilder/v3/pkg/plugin/util
+sigs.k8s.io/kubebuilder/v3/pkg/plugins
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/api
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/certmanager
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/crd
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/crd/patches
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/kdefault
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/manager
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/prometheus
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/rbac
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/samples
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/config/webhook
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/controllers
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v2/scaffolds/internal/templates/hack
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/api
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/certmanager
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/crd/patches
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/kdefault
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/manager
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/prometheus
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/rbac
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/samples
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/config/webhook
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/controllers
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/golang/v3/scaffolds/internal/templates/hack
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/cmdutil
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/filesystem
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/machinery
+sigs.k8s.io/kubebuilder/v3/pkg/plugins/internal/util
+sigs.k8s.io/kubebuilder/v3/plugins/addon
 # sigs.k8s.io/kustomize v2.0.3+incompatible
 sigs.k8s.io/kustomize/pkg/commands/build
 sigs.k8s.io/kustomize/pkg/constants

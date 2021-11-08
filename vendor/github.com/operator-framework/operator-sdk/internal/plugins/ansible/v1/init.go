@@ -22,8 +22,8 @@ import (
 
 	"github.com/spf13/pflag"
 	"k8s.io/apimachinery/pkg/util/validation"
-	"sigs.k8s.io/kubebuilder/v2/pkg/model/config"
-	"sigs.k8s.io/kubebuilder/v2/pkg/plugin"
+	"sigs.k8s.io/kubebuilder/v3/pkg/config"
+	"sigs.k8s.io/kubebuilder/v3/pkg/plugin"
 
 	"github.com/operator-framework/operator-sdk/internal/kubebuilder/cmdutil"
 	"github.com/operator-framework/operator-sdk/internal/plugins/ansible/v1/scaffolds"
@@ -32,14 +32,15 @@ import (
 )
 
 type initSubcommand struct {
-	config    *config.Config
-	apiPlugin createAPIPSubcommand
-
-	// If true, run the `create api` plugin.
-	doCreateAPI bool
+	config  config.Config
+	apiSubc createAPIPSubcommand
 
 	// For help text.
 	commandName string
+
+	// Flags
+	domain      string
+	projectName string
 }
 
 var (
@@ -91,19 +92,41 @@ Optionally creates a new API, using the same flags as "create api"
 }
 
 func (p *initSubcommand) BindFlags(fs *pflag.FlagSet) {
-	fs.SortFlags = false
-	fs.StringVar(&p.config.Domain, "domain", "my.domain", "domain for groups")
-	fs.StringVar(&p.config.ProjectName, "project-name", "", "name of this project, the default being directory name")
-	p.apiPlugin.BindFlags(fs)
+	fs.StringVar(&p.domain, "domain", "my.domain", "domain for groups")
+	fs.StringVar(&p.projectName, "project-name", "", "name of this project, the default being directory name")
+	p.apiSubc.BindFlags(fs)
 }
 
-func (p *initSubcommand) InjectConfig(c *config.Config) {
-	c.Layout = pluginKey
+func (p *initSubcommand) InjectConfig(c config.Config) {
+	_ = c.SetLayout(pluginKey)
 	p.config = c
-	p.apiPlugin.config = p.config
+	p.apiSubc.config = p.config
 }
+
+// createOptions with defaults set, for comparison in case GVK/chart inputs were set.
+var emptyCreateOptions = createOptions{CRDVersion: "v1"}
 
 func (p *initSubcommand) Run() error {
+	// Set values in the config
+	if err := p.config.SetProjectName(p.projectName); err != nil {
+		return err
+	}
+	if err := p.config.SetDomain(p.domain); err != nil {
+		return err
+	}
+
+	// Check if the project name is a valid k8s namespace (DNS 1123 label).
+	if p.config.GetProjectName() == "" {
+		dir, err := os.Getwd()
+		if err != nil {
+			return fmt.Errorf("error getting current directory: %v", err)
+		}
+
+		if err := p.config.SetProjectName(strings.ToLower(filepath.Base(dir))); err != nil {
+			return err
+		}
+	}
+
 	if err := cmdutil.Run(p); err != nil {
 		return err
 	}
@@ -111,6 +134,14 @@ func (p *initSubcommand) Run() error {
 	// Run SDK phase 2 plugins.
 	if err := p.runPhase2(); err != nil {
 		return err
+	}
+
+	// If API creation is configured, run the 'create api' subcommand.
+	if p.apiSubc.options != emptyCreateOptions {
+		p.apiSubc.options.Domain = p.domain
+		if err := p.apiSubc.Run(); err != nil {
+			return err
+		}
 	}
 
 	return nil
@@ -125,52 +156,23 @@ func (p *initSubcommand) runPhase2() error {
 		return err
 	}
 
-	if p.doCreateAPI {
-		if err := p.apiPlugin.runPhase2(); err != nil {
-			return err
-		}
-	}
-
 	return nil
 }
 
 func (p *initSubcommand) Validate() error {
-	// Check if the project name is a valid k8s namespace (DNS 1123 label).
-	if p.config.ProjectName == "" {
-		dir, err := os.Getwd()
-		if err != nil {
-			return fmt.Errorf("error getting current directory: %v", err)
-		}
-		p.config.ProjectName = strings.ToLower(filepath.Base(dir))
-	}
-	if err := validation.IsDNS1123Label(p.config.ProjectName); err != nil {
-		return fmt.Errorf("project name (%s) is invalid: %v", p.config.ProjectName, err)
+	if err := validation.IsDNS1123Label(p.config.GetProjectName()); err != nil {
+		return fmt.Errorf("project name (%s) is invalid: %v", p.config.GetProjectName(), err)
 	}
 
-	defaultOpts := scaffolds.CreateOptions{CRDVersion: "v1"}
-	if !p.apiPlugin.createOptions.GVK.Empty() || p.apiPlugin.createOptions != defaultOpts {
-		p.doCreateAPI = true
-		return p.apiPlugin.Validate()
-	}
 	return nil
 }
 
 func (p *initSubcommand) GetScaffolder() (cmdutil.Scaffolder, error) {
-	var (
-		apiScaffolder cmdutil.Scaffolder
-		err           error
-	)
-	if p.doCreateAPI {
-		apiScaffolder, err = p.apiPlugin.GetScaffolder()
-		if err != nil {
-			return nil, err
-		}
-	}
-	return scaffolds.NewInitScaffolder(p.config, apiScaffolder), nil
+	return scaffolds.NewInitScaffolder(p.config), nil
 }
 
 func (p *initSubcommand) PostScaffold() error {
-	if !p.doCreateAPI {
+	if p.apiSubc.options == emptyCreateOptions {
 		fmt.Printf("Next: define a resource with:\n$ %s create api\n", p.commandName)
 	}
 
