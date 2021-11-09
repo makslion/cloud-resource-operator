@@ -972,8 +972,8 @@ github.com/operator-framework/java-operator-plugins v0.0.0-20210525141944-8303c3
 github.com/operator-framework/operator-lib v0.4.1/go.mod h1:2dszbSeSo/472Ea8zIAcjEJhgzXKxzAGG24MgIP+13c=
 github.com/operator-framework/operator-registry v1.15.3 h1:C+u+zjDh6yQAKN+DbUvPeLjojZtJftvp/J28rRqiWWU=
 github.com/operator-framework/operator-registry v1.15.3/go.mod h1:CI7cu5ANoSQB54XWr/hXefm1PbKNJztSrhGBEDLCNCg=
-github.com/operator-framework/operator-sdk v1.8.0 h1:+NvMESaVrxHz8y0lM/aQTFjON5Qx9RZ8B9EWl9J46f4=
-github.com/operator-framework/operator-sdk v1.8.0/go.mod h1:id4hclDcbiuIdNGYXijWmLOKRbrO6XG0UbtbnbjbQqI=
+github.com/operator-framework/operator-sdk v1.9.0 h1:3jZF2cb/cQtS2OAN3hm58HYA+kbuvItJ7JJ0O09Ef78=
+github.com/operator-framework/operator-sdk v1.9.0/go.mod h1:id4hclDcbiuIdNGYXijWmLOKRbrO6XG0UbtbnbjbQqI=
 github.com/otiai10/copy v1.2.0 h1:HvG945u96iNadPoG2/Ja2+AUJeW5YuFQMixq9yirC+k=
 github.com/otiai10/copy v1.2.0/go.mod h1:rrF5dJ5F0t/EWSYODDu4j9/vEeYHMkc8jt0zJChqQWw=
 github.com/otiai10/curr v0.0.0-20150429015615-9b4961190c95/go.mod h1:9qAhocn7zKJG+0mI8eUu6xqkFDYS2kb2saOteoSB3cE=
