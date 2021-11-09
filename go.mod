@@ -18,7 +18,7 @@ require (
 	github.com/onsi/gomega v1.15.0
 	github.com/openshift/api v3.9.1-0.20190424152011-77b8897ec79a+incompatible
 	github.com/openshift/cloud-credential-operator v0.0.0-20190812222907-ec6f38d73a79
-	github.com/operator-framework/operator-sdk v1.10.0
+	github.com/operator-framework/operator-sdk v1.11.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.0
 	github.com/sirupsen/logrus v1.8.1

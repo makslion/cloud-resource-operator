@@ -515,7 +515,7 @@ github.com/openshift/api/route/v1
 ## explicit
 github.com/openshift/cloud-credential-operator/pkg/apis
 github.com/openshift/cloud-credential-operator/pkg/apis/cloudcredential/v1
-# github.com/operator-framework/api v0.10.0
+# github.com/operator-framework/api v0.10.5
 github.com/operator-framework/api/pkg/apis/scorecard/v1alpha3
 github.com/operator-framework/api/pkg/lib/version
 github.com/operator-framework/api/pkg/manifests
@@ -547,7 +547,7 @@ github.com/operator-framework/operator-registry/pkg/lib/bundle
 github.com/operator-framework/operator-registry/pkg/lib/semver
 github.com/operator-framework/operator-registry/pkg/lib/validation
 github.com/operator-framework/operator-registry/pkg/registry
-# github.com/operator-framework/operator-sdk v1.10.0
+# github.com/operator-framework/operator-sdk v1.11.0
 ## explicit
 github.com/operator-framework/operator-sdk/cmd/operator-sdk
 github.com/operator-framework/operator-sdk/internal/annotations/metrics
