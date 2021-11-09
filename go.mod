@@ -12,34 +12,32 @@ require (
 	github.com/google/uuid v1.1.2
 	github.com/gregjones/httpcache v0.0.0-20190203031600-7a902570cb17 // indirect
 	github.com/hashicorp/go-version v1.2.1
-	github.com/lib/pq v1.8.0
+	github.com/lib/pq v1.10.0
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/onsi/ginkgo v1.16.4
 	github.com/onsi/gomega v1.15.0
-	github.com/opencontainers/runtime-spec v1.0.0 // indirect
 	github.com/openshift/api v3.9.1-0.20190424152011-77b8897ec79a+incompatible
 	github.com/openshift/cloud-credential-operator v0.0.0-20190812222907-ec6f38d73a79
-	github.com/operator-framework/operator-sdk v1.9.0
+	github.com/operator-framework/operator-sdk v1.10.0
 	github.com/pkg/errors v0.9.1
-	github.com/prometheus/client_golang v1.7.1
+	github.com/prometheus/client_golang v1.11.0
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
-	k8s.io/api v0.20.2
-	k8s.io/apiextensions-apiserver v0.20.2
+	k8s.io/api v0.21.2
+	k8s.io/apiextensions-apiserver v0.21.2
 	k8s.io/apimachinery v0.22.2
 	k8s.io/client-go v12.0.0+incompatible
 	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e
+	rsc.io/letsencrypt v0.0.3 // indirect
 	sigs.k8s.io/controller-runtime v0.10.2
 	sigs.k8s.io/kubebuilder/v3 v3.2.0 // indirect
 )
 
 replace (
-	k8s.io/apiserver => k8s.io/apiserver v0.0.0-20191016112112-5190913f932d
-	k8s.io/client-go => k8s.io/client-go v0.20.0
+	k8s.io/client-go => k8s.io/client-go v0.21.2
 	k8s.io/cloud-provider => k8s.io/cloud-provider v0.0.0-20191016115326-20453efc2458
 	k8s.io/cluster-bootstrap => k8s.io/cluster-bootstrap v0.0.0-20191016115129-c07a134afb42
 	k8s.io/code-generator => k8s.io/code-generator v0.0.0-20191004115455-8e001e5d1894
-	k8s.io/component-base => k8s.io/component-base v0.0.0-20191016111319-039242c015a9
 	k8s.io/cri-api => k8s.io/cri-api v0.0.0-20190828162817-608eb1dad4ac
 	k8s.io/csi-translation-lib => k8s.io/csi-translation-lib v0.0.0-20191016115521-756ffa5af0bd
 	k8s.io/kube-aggregator => k8s.io/kube-aggregator v0.0.0-20191016112429-9587704a8ad4
