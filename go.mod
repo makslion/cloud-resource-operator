@@ -18,13 +18,13 @@ require (
 	github.com/onsi/gomega v1.15.0
 	github.com/openshift/api v3.9.1-0.20190424152011-77b8897ec79a+incompatible
 	github.com/openshift/cloud-credential-operator v0.0.0-20190812222907-ec6f38d73a79
-	github.com/operator-framework/operator-sdk v1.12.0
+	github.com/operator-framework/operator-sdk v1.13.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.11.0
 	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
-	k8s.io/api v0.21.2
-	k8s.io/apiextensions-apiserver v0.21.2
+	k8s.io/api v0.22.1
+	k8s.io/apiextensions-apiserver v0.22.1
 	k8s.io/apimachinery v0.22.2
 	k8s.io/client-go v12.0.0+incompatible
 	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e
