@@ -6,7 +6,6 @@ require (
 	github.com/aws/aws-sdk-go v1.39.2
 	github.com/containerd/typeurl v0.0.0-20190228175220-2a93cfde8c20 // indirect
 	github.com/coreos/prometheus-operator v0.38.1-0.20200424145508-7e176fda06cc
-	github.com/docker/spdystream v0.0.0-20181023171402-6480d4af844c // indirect
 	github.com/elazarl/goproxy v0.0.0-20190421051319-9d40249d3c2f // indirect
 	github.com/fatih/color v1.10.0 // indirect
 	github.com/ghodss/yaml v1.0.1-0.20180820084758-c7ce16629ff4 // indirect
@@ -15,22 +14,23 @@ require (
 	github.com/hashicorp/go-version v1.2.1
 	github.com/lib/pq v1.8.0
 	github.com/mattn/go-runewidth v0.0.9 // indirect
-	github.com/onsi/ginkgo v1.15.0
-	github.com/onsi/gomega v1.10.5
+	github.com/onsi/ginkgo v1.16.4
+	github.com/onsi/gomega v1.15.0
 	github.com/opencontainers/runtime-spec v1.0.0 // indirect
 	github.com/openshift/api v3.9.1-0.20190424152011-77b8897ec79a+incompatible
 	github.com/openshift/cloud-credential-operator v0.0.0-20190812222907-ec6f38d73a79
-	github.com/operator-framework/operator-sdk v1.7.1
+	github.com/operator-framework/operator-sdk v1.8.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.7.1
-	github.com/sirupsen/logrus v1.7.0
+	github.com/sirupsen/logrus v1.8.1
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e
 	k8s.io/api v0.20.2
 	k8s.io/apiextensions-apiserver v0.20.2
-	k8s.io/apimachinery v0.20.2
+	k8s.io/apimachinery v0.22.2
 	k8s.io/client-go v12.0.0+incompatible
-	k8s.io/kube-openapi v0.0.0-20201113171705-d219536bb9fd
+	k8s.io/kube-openapi v0.0.0-20210421082810-95288971da7e
 	sigs.k8s.io/controller-runtime v0.10.2
+	sigs.k8s.io/kubebuilder/v3 v3.2.0 // indirect
 )
 
 replace (
