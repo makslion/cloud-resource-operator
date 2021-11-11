@@ -234,7 +234,6 @@ func (r *CloudMetricsReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	// off the first reconcile loop
 	go func() {
 		events <- event.GenericEvent{
-			Meta:   &integreatlyv1alpha1.Redis{},
 			Object: &integreatlyv1alpha1.Redis{},
 		}
 	}()
@@ -246,9 +245,8 @@ func (r *CloudMetricsReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Complete(r)
 }
 
-func (r *CloudMetricsReconciler) Reconcile(request ctrl.Request) (ctrl.Result, error) {
+func (r *CloudMetricsReconciler) Reconcile(ctx context.Context, request ctrl.Request) (ctrl.Result, error) {
 	r.logger.Info("reconciling CloudMetrics")
-	ctx := context.Background()
 
 	// scrapedMetrics stores the GenericCloudMetric which are returned from the providers
 	var scrapedMetrics []*providers.GenericCloudMetric
