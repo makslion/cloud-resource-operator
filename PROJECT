@@ -5,30 +5,35 @@ repo: github.com/integr8ly/cloud-resource-operator
 resources:
 -
   domain: integreatly.org
+  controller: true
   group: integreatly
   kind: BlobStorage
   path: github.com/integr8ly/cloud-resource-operator/api/v1alpha1
   version: v1alpha1
 -
   domain: integreatly.org
+  controller: true
   group: integreatly
   kind: Postgres
   path: github.com/integr8ly/cloud-resource-operator/api/v1alpha1
   version: v1alpha1
 -
   domain: integreatly.org
+  controller: true
   group: integreatly
   kind: PostgresSnapshot
   path: github.com/integr8ly/cloud-resource-operator/api/v1alpha1
   version: v1alpha1
 -
   domain: integreatly.org
+  controller: true
   group: integreatly
   kind: Redis
   path: github.com/integr8ly/cloud-resource-operator/api/v1alpha1
   version: v1alpha1
 -
   domain: integreatly.org
+  controller: true
   group: integreatly
   kind: RedisSnapshot
   path: github.com/integr8ly/cloud-resource-operator/api/v1alpha1
