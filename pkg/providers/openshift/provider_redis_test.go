@@ -47,6 +47,7 @@ func buildTestRedisCR() *v1alpha1.Redis {
 		ObjectMeta: controllerruntime.ObjectMeta{
 			Name:      testRedisName,
 			Namespace: testRedisNamespace,
+			ResourceVersion: "1000",
 		},
 		Spec:   croType.ResourceTypeSpec{},
 		Status: croType.ResourceTypeStatus{},
@@ -164,7 +165,7 @@ func TestOpenShiftRedisProvider_CreateRedis(t *testing.T) {
 		{
 			name: "test successful creation",
 			fields: fields{
-				Client:        fake.NewFakeClientWithScheme(scheme, buildTestRedisCR()),
+				Client:        fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR()).Build(),
 				Logger:        testLogger,
 				ConfigManager: buildDefaultConfigManager(),
 			},
@@ -178,7 +179,7 @@ func TestOpenShiftRedisProvider_CreateRedis(t *testing.T) {
 		{
 			name: "test successful creation with deployment ready",
 			fields: fields{
-				Client:        fake.NewFakeClientWithScheme(scheme, buildTestDeploymentReady(), buildTestRedisCR()),
+				Client:        fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestDeploymentReady(), buildTestRedisCR()).Build(),
 				Logger:        testLogger,
 				ConfigManager: buildDefaultConfigManager(),
 			},
@@ -234,7 +235,7 @@ func TestOpenShiftRedisProvider_DeleteRedis(t *testing.T) {
 		{
 			name: "test successful deletion",
 			fields: fields{
-				Client:        fake.NewFakeClientWithScheme(scheme, buildTestDeploymentReady(), buildTestRedisCR()),
+				Client:        fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestDeploymentReady(), buildTestRedisCR()).Build(),
 				Logger:        testLogger,
 				ConfigManager: buildDefaultConfigManager(),
 			},
