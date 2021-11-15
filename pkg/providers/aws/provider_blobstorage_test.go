@@ -152,7 +152,7 @@ func TestBlobStorageProvider_reconcileBucket(t *testing.T) {
 		{
 			name: "test aws s3 bucket already exists",
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestBlobStorageCR(), buildTestCredentialsRequest()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestBlobStorageCR(), buildTestCredentialsRequest()).Build(),
 				Logger:            logrus.WithFields(logrus.Fields{}),
 				CredentialManager: &CredentialManagerMock{},
 				ConfigManager:     &ConfigManagerMock{},
@@ -171,7 +171,7 @@ func TestBlobStorageProvider_reconcileBucket(t *testing.T) {
 		{
 			name: "test aws s3 bucket is created if doesn't exist",
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestBlobStorageCR(), buildTestCredentialsRequest()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestBlobStorageCR(), buildTestCredentialsRequest()).Build(),
 				Logger:            logrus.WithFields(logrus.Fields{}),
 				CredentialManager: &CredentialManagerMock{},
 				ConfigManager:     &ConfigManagerMock{},
@@ -232,7 +232,7 @@ func TestBlobStorageProvider_reconcileBucketDelete(t *testing.T) {
 		{
 			name: "test successful delete",
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestBlobStorageCR(), buildTestCredentialsRequest()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestBlobStorageCR(), buildTestCredentialsRequest()).Build(),
 				Logger:            logrus.WithFields(logrus.Fields{}),
 				CredentialManager: &CredentialManagerMock{},
 				ConfigManager:     &ConfigManagerMock{},
@@ -253,7 +253,7 @@ func TestBlobStorageProvider_reconcileBucketDelete(t *testing.T) {
 		{
 			name: "test error on failed bucket delete",
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestBlobStorageCR(), buildTestCredentialsRequest()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestBlobStorageCR(), buildTestCredentialsRequest()).Build(),
 				Logger:            logrus.WithFields(logrus.Fields{}),
 				CredentialManager: &CredentialManagerMock{},
 				ConfigManager:     &ConfigManagerMock{},
@@ -360,7 +360,7 @@ func TestBlobStorageProvider_TagBlobStorage(t *testing.T) {
 		{
 			name: "test tagging completes",
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestBlobStorageCR(), buildTestCredentialsRequest(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestBlobStorageCR(), buildTestCredentialsRequest(), buildTestInfra()).Build(),
 				Logger:            logrus.WithFields(logrus.Fields{}),
 				CredentialManager: &CredentialManagerMock{},
 				ConfigManager:     &ConfigManagerMock{},

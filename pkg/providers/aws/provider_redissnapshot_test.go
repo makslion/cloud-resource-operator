@@ -67,7 +67,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 		t.Fatal("failed to build scheme", err)
 	}
 
-	fakeClient := fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra())
+	fakeClient := fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build()
 
 	// testIdentifier, err := BuildInfraNameFromObject(context.TODO(), fakeClient, buildTestRedisSnapshotCR().ObjectMeta, DefaultAwsIdentifierLength)
 	testTimestampedIdentifier, err := BuildTimestampedInfraNameFromObjectCreation(context.TODO(), fakeClient, buildTestRedisSnapshotCR().ObjectMeta, DefaultAwsIdentifierLength)
@@ -165,7 +165,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 				}),
 			},
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build(),
 				Logger:            testLogger,
 				CredentialManager: nil,
 				ConfigManager:     nil,
@@ -201,7 +201,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 				}),
 			},
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build(),
 				Logger:            testLogger,
 				CredentialManager: nil,
 				ConfigManager:     nil,
@@ -221,7 +221,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 				}),
 			},
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build(),
 				Logger:            testLogger,
 				CredentialManager: nil,
 				ConfigManager:     nil,
@@ -248,7 +248,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 				}),
 			},
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build(),
 				Logger:            testLogger,
 				CredentialManager: nil,
 				ConfigManager:     nil,
@@ -283,7 +283,7 @@ func TestAWSRedisSnapshotProvider_createRedisSnapshot(t *testing.T) {
 				}),
 			},
 			fields: fields{
-				Client:            fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()),
+				Client:            fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build(),
 				Logger:            testLogger,
 				CredentialManager: nil,
 				ConfigManager:     nil,
@@ -328,7 +328,7 @@ func TestAWSRedisSnapshotProvider_deleteRedisSnapshot(t *testing.T) {
 		t.Fatal("failed to build scheme", err)
 	}
 
-	fakeClient := fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra())
+	fakeClient := fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build()
 
 	testTimestampedIdentifier, err := BuildTimestampedInfraNameFromObjectCreation(context.TODO(), fakeClient, buildTestRedisSnapshotCR().ObjectMeta, DefaultAwsIdentifierLength)
 
@@ -529,7 +529,7 @@ func TestAWSRedisSnapshotProvider_findSnapshotInstance(t *testing.T) {
 		t.Fatal("failed to build scheme", err)
 	}
 
-	fakeClient := fake.NewFakeClientWithScheme(scheme, buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra())
+	fakeClient := fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR(), buildTestRedisSnapshotCR(), builtTestCredSecret(), buildTestInfra()).Build()
 	testIdentifier := "test-identifier"
 	if err != nil {
 		logrus.Fatal(err)

@@ -45,8 +45,8 @@ func buildTestScheme() (*runtime.Scheme, error) {
 func buildTestRedisCR() *v1alpha1.Redis {
 	return &v1alpha1.Redis{
 		ObjectMeta: controllerruntime.ObjectMeta{
-			Name:      testRedisName,
-			Namespace: testRedisNamespace,
+			Name:            testRedisName,
+			Namespace:       testRedisNamespace,
 			ResourceVersion: "1000",
 		},
 		Spec:   croType.ResourceTypeSpec{},

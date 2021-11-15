@@ -440,7 +440,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: buildValidClusterVPC(validCIDRSixteen), subnets: buildBundledSubnets()},
 			},
 			want:    true,
@@ -454,7 +454,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: buildVpcs(), subnets: buildValidBundleSubnets()},
 			},
 			want:    false,
@@ -468,7 +468,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: buildVpcs(), subnets: buildMultipleValidBundleSubnets()},
 			},
 			want:    false,
@@ -482,7 +482,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: buildVpcs()},
 			},
 			wantErr: true,
@@ -495,7 +495,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: []*ec2.Vpc{}},
 			},
 			wantErr: true,
@@ -509,7 +509,7 @@ func TestNetworkProvider_IsEnabled(t *testing.T) {
 			},
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Svc: &mockEc2Client{vpcs: buildVpcs(), subnets: buildStandaloneVPCAssociatedSubnets(defaultValidSubnetMaskOneA, defaultValidSubnetMaskOneB)},
 			},
 			wantErr: true,
@@ -560,7 +560,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully error on invalid cidr params standalone vpc network - CIDR /15",
 			fields: fields{
-				Client:         fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client:         fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi:         &mockRdsClient{},
 				Ec2Api:         &mockEc2Client{vpcs: buildValidClusterVPC(validCIDREighteen)},
 				ElasticacheApi: &mockElasticacheClient{},
@@ -575,7 +575,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully build standalone vpc network  - CIDR /16",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = buildValidClusterVPC(defaultNonOverlappingCidr)
@@ -594,7 +594,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully build standalone vpc network - CIDR /26",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = buildValidClusterVPC(defaultNonOverlappingCidr)
@@ -613,7 +613,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully build standalone vpc network - CIDR /27",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = buildValidClusterVPC(defaultNonOverlappingCidr)
@@ -630,7 +630,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "fail if unable to get cluster id",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme),
+				Client: fake.NewClientBuilder().WithScheme(scheme).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -649,7 +649,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "verify ec2 error when describing vpcs",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.wantErrList = true
@@ -667,7 +667,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on standalone vpc",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentySix)}
@@ -696,7 +696,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on non tagged standalone vpc",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = buildValidClusterVPC(defaultNonOverlappingCidr)
@@ -720,7 +720,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully timed out to check if VPC exists and failed the deletion",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = buildValidClusterVPC(defaultNonOverlappingCidr)
@@ -748,7 +748,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on already created rds and elasticache subnet groups for standalone vpc",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.subnetGroups = buildRDSSubnetGroup()
 					rdsClient.modifyDBSubnetGroupFn = func(input *rds.ModifyDBSubnetGroupInput) (*rds.ModifyDBSubnetGroupOutput, error) {
@@ -806,7 +806,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on standalone vpc - create subnets in correct azs",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentySix)}
@@ -836,7 +836,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on standalone vpc - create subnets in large unsorted az zones list - zone one and two",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentySix)}
@@ -884,7 +884,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully reconcile on standalone vpc - create correct subnets for vpc cidr block 10.0.50.0/23",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentyThree)}
@@ -914,7 +914,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "verify cluster vpc cidr block and standalone vpc cidr block overlaps return an error",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: &mockEc2Client{
 					vpcs:    []*ec2.Vpc{buildValidClusterVPC(validCIDRSixteen)[0]},
@@ -932,7 +932,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "successfully error if vpc route table does not exist",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentySix)}
@@ -956,7 +956,7 @@ func TestNetworkProvider_CreateNetwork(t *testing.T) {
 		{
 			name: "fail when not enough availability zones support default node types",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(nil),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRTwentySix)}
@@ -1037,7 +1037,7 @@ func TestNetworkProvider_DeleteNetwork(t *testing.T) {
 		{
 			name: "verify deletion - no vpc found",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{}
@@ -1053,7 +1053,7 @@ func TestNetworkProvider_DeleteNetwork(t *testing.T) {
 		{
 			name: "verify deletion - of standalone vpc",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDRSixteen)}
@@ -1069,7 +1069,7 @@ func TestNetworkProvider_DeleteNetwork(t *testing.T) {
 		{
 			name: "verify deletion - of standalone vpc and associated subnets",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -1090,7 +1090,7 @@ func TestNetworkProvider_DeleteNetwork(t *testing.T) {
 		{
 			name: "verify deletion - of standalone vpc and associated subnets and subnet groups",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -1164,7 +1164,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify successful reoncile",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1194,7 +1194,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify invalid CIDR",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1223,7 +1223,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify unmarshal error",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1252,7 +1252,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify default cidr block and no error on empty cidr block",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra(), buildTestNetwork(func(network *v12.Network) {})),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra(), buildTestNetwork(func(network *v12.Network) {})).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1284,7 +1284,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify empty cidr blocks returns a error",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra(), buildTestNetwork(func(network *v12.Network) {
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra(), buildTestNetwork(func(network *v12.Network) {
 					network.Spec.ClusterNetwork = []v12.ClusterNetworkEntry{
 						{
 							CIDR: "",
@@ -1293,7 +1293,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 					network.Spec.ServiceNetwork = []string{
 						"",
 					}
-				})),
+				})).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1324,7 +1324,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 		{
 			name: "verify no non overlapping available cidr blocks returns a error",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra(), buildTestNetwork(func(network *v12.Network) {
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra(), buildTestNetwork(func(network *v12.Network) {
 					network.Spec.ClusterNetwork = []v12.ClusterNetworkEntry{
 						{
 							CIDR: "10.0.0.0/8",
@@ -1333,7 +1333,7 @@ func TestNetworkProvider_ReconcileNetworkProviderConfig(t *testing.T) {
 					network.Spec.ServiceNetwork = []string{
 						"172.0.0.0/8",
 					}
-				})),
+				})).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1408,7 +1408,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 				ec2Client: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1427,7 +1427,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 						return nil, errors.New("test")
 					}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1449,7 +1449,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 						return nil, errors.New("test")
 					}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1474,7 +1474,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 						return nil, errors.New("test")
 					}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1505,7 +1505,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 						return nil, errors.New("test")
 					}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1536,7 +1536,7 @@ func TestNetworkProvider_CreateNetworkPeering(t *testing.T) {
 						return nil, errors.New("test")
 					}
 				}),
-				kubeClient: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				kubeClient: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				logger:     logrus.NewEntry(logrus.StandardLogger()),
 			},
 			args: args{
@@ -1590,7 +1590,7 @@ func TestNetworkProvider_GetClusterNetworkPeering(t *testing.T) {
 		{
 			name: "fails when cannot get standalone vpc",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.wantErrList = true
 					ec2Client.vpcs = []*ec2.Vpc{}
@@ -1605,7 +1605,7 @@ func TestNetworkProvider_GetClusterNetworkPeering(t *testing.T) {
 		{
 			name: "fails when cannot get vpc peering connection",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{}
 				}),
@@ -1619,7 +1619,7 @@ func TestNetworkProvider_GetClusterNetworkPeering(t *testing.T) {
 		{
 			name: "success when network peering found",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.vpcs = []*ec2.Vpc{buildValidStandaloneVPC(validCIDREighteen), buildValidClusterVPC(validCIDREighteen)[0]}
 					ec2Client.describeVpcPeeringConnectionFn = func(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error) {
@@ -1686,7 +1686,7 @@ func TestNetworkProvider_DeleteNetworkPeering(t *testing.T) {
 		{
 			name: "fails when cannot describe peering connections",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcPeeringConnectionFn = func(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error) {
 						return nil, errors.New("test")
@@ -1702,7 +1702,7 @@ func TestNetworkProvider_DeleteNetworkPeering(t *testing.T) {
 		{
 			name: "fails when cannot delete peering connections",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcPeeringConnectionFn = func(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error) {
 						return &ec2.DescribeVpcPeeringConnectionsOutput{
@@ -1723,7 +1723,7 @@ func TestNetworkProvider_DeleteNetworkPeering(t *testing.T) {
 		{
 			name: "success when status is deleting",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcPeeringConnectionFn = func(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error) {
 						return &ec2.DescribeVpcPeeringConnectionsOutput{
@@ -1747,7 +1747,7 @@ func TestNetworkProvider_DeleteNetworkPeering(t *testing.T) {
 		{
 			name: "success when vpc deletion succeeds",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcPeeringConnectionFn = func(*ec2.DescribeVpcPeeringConnectionsInput) (*ec2.DescribeVpcPeeringConnectionsOutput, error) {
 						return &ec2.DescribeVpcPeeringConnectionsOutput{
@@ -1807,7 +1807,7 @@ func TestNetworkProvider_CreateNetworkConnection(t *testing.T) {
 		{
 			name: "test successful security group creation",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1896,7 +1896,7 @@ func TestNetworkProvider_CreateNetworkConnection(t *testing.T) {
 		{
 			name: "test security group exists with no tags",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -1977,7 +1977,7 @@ func TestNetworkProvider_CreateNetworkConnection(t *testing.T) {
 		{
 			name: "test security group exists with tags and invalid permissions",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -2074,7 +2074,7 @@ func TestNetworkProvider_CreateNetworkConnection(t *testing.T) {
 		{
 			name: "test security group exists with tags and valid permissions",
 			fields: fields{
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: &mockRdsClient{},
 				Ec2Api: buildMockEc2Client(func(ec2Client *mockEc2Client) {
 					ec2Client.describeVpcsFn = func(input *ec2.DescribeVpcsInput) (*ec2.DescribeVpcsOutput, error) {
@@ -2221,7 +2221,7 @@ func TestNetworkProvider_DeleteNetworkConnection(t *testing.T) {
 		{
 			name: "ensure no error return if security group is nil",
 			fields: fields{
-				Client:         fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client:         fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi:         &mockRdsClient{},
 				ElasticacheApi: &mockElasticacheClient{},
 				Logger:         logrus.NewEntry(logrus.StandardLogger()),
@@ -2277,7 +2277,7 @@ func TestNetworkProvider_DeleteNetworkConnection(t *testing.T) {
 		{
 			name: "ensure ec2 delete security group is called if security group is not nil and is a security group provisioned by cro",
 			fields: fields{
-				Client:         fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client:         fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi:         &mockRdsClient{},
 				ElasticacheApi: &mockElasticacheClient{},
 				Logger:         logrus.NewEntry(logrus.StandardLogger()),
@@ -2348,7 +2348,7 @@ func TestNetworkProvider_DeleteNetworkConnection(t *testing.T) {
 		{
 			name: "ensure ec2 delete security group is not called if security groups are found but not a cro provisioned security group",
 			fields: fields{
-				Client:         fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client:         fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi:         &mockRdsClient{},
 				ElasticacheApi: &mockElasticacheClient{},
 				Logger:         logrus.NewEntry(logrus.StandardLogger()),
@@ -2407,7 +2407,7 @@ func TestNetworkProvider_DeleteNetworkConnection(t *testing.T) {
 		{
 			name: "ensure ec2 delete routes is called",
 			fields: fields{
-				Client:         fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client:         fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi:         &mockRdsClient{},
 				ElasticacheApi: &mockElasticacheClient{},
 				Logger:         logrus.NewEntry(logrus.StandardLogger()),
@@ -2523,7 +2523,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "successfully delete subnet groups (rds and elasticache) and ec2 security group",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -2567,7 +2567,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "return error when the cluster vpc is nil",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -2608,7 +2608,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "ensure that no error is returned if elasticache.ErrCodeCacheSubnetGroupNotFoundFault is returned on delete request",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -2645,7 +2645,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "ensure that no error is returned if rds.ErrCodeDBSubnetGroupNotFoundFault is returned on delete request",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, awserr.New(rds.ErrCodeDBSubnetGroupNotFoundFault, "", errors.New(rds.ErrCodeDBSubnetGroupNotFoundFault))
@@ -2680,7 +2680,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "return error when aws error returned on deletecachesubnetgroup",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, nil
@@ -2717,7 +2717,7 @@ func TestNetworkProvider_DeleteBundledCloudResources(t *testing.T) {
 			name: "return error when aws error returned on deletedbsubnetgroup",
 			fields: fields{
 				Logger: logrus.NewEntry(logrus.StandardLogger()),
-				Client: fake.NewFakeClientWithScheme(scheme, buildTestInfra()),
+				Client: fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestInfra()).Build(),
 				RdsApi: buildMockRdsClient(func(rdsClient *mockRdsClient) {
 					rdsClient.deleteDBSubnetGroupFn = func(input *rds.DeleteDBSubnetGroupInput) (*rds.DeleteDBSubnetGroupOutput, error) {
 						return &rds.DeleteDBSubnetGroupOutput{}, awserr.New(rds.ErrCodeAuthorizationNotFoundFault, "", errors.New(rds.ErrCodeAuthorizationNotFoundFault))
