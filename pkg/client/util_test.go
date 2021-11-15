@@ -21,6 +21,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+var (
+	FakeResourceVersion = "1000"
+)
+
 func buildTestScheme() (*runtime.Scheme, error) {
 	scheme := runtime.NewScheme()
 	err := apis.AddToScheme(scheme)
@@ -73,7 +77,7 @@ func TestReconcileBlobStorage(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -112,7 +116,7 @@ func TestReconcileBlobStorage(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"cro": "test",
 					},
@@ -213,7 +217,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -253,7 +257,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -313,7 +317,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1000",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -357,7 +361,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1000",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -451,7 +455,7 @@ func TestReconcileRedis(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -490,7 +494,7 @@ func TestReconcileRedis(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: "1",
+					ResourceVersion: FakeResourceVersion,
 					Labels: map[string]string{
 						"cro": "test",
 					},

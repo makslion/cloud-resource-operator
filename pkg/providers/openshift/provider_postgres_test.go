@@ -31,13 +31,15 @@ var (
 	testPostgresDatabase  = "test-postgres"
 	testPostgresUser      = "test-user"
 	testPostgresPassword  = "test-password"
+	FakeResourceVersion   = "1000"
 )
 
 func buildTestPostgresCR() *v1alpha1.Postgres {
 	return &v1alpha1.Postgres{
 		ObjectMeta: controllerruntime.ObjectMeta{
-			Name:      testPostgresName,
-			Namespace: testPostgresNamespace,
+			Name:            testPostgresName,
+			Namespace:       testPostgresNamespace,
+			ResourceVersion: FakeResourceVersion,
 		},
 		Spec:   croType.ResourceTypeSpec{},
 		Status: croType.ResourceTypeStatus{},

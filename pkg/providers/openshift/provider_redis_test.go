@@ -47,7 +47,7 @@ func buildTestRedisCR() *v1alpha1.Redis {
 		ObjectMeta: controllerruntime.ObjectMeta{
 			Name:            testRedisName,
 			Namespace:       testRedisNamespace,
-			ResourceVersion: "1000",
+			ResourceVersion: FakeResourceVersion,
 		},
 		Spec:   croType.ResourceTypeSpec{},
 		Status: croType.ResourceTypeStatus{},
