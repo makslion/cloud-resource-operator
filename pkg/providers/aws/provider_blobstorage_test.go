@@ -121,8 +121,9 @@ func (s *mockS3Svc) PutBucketEncryption(input *s3.PutBucketEncryptionInput) (*s3
 func buildTestBlobStorageCR() *v1alpha1.BlobStorage {
 	return &v1alpha1.BlobStorage{
 		ObjectMeta: v1.ObjectMeta{
-			Name:      "test",
-			Namespace: "test",
+			Name:            "test",
+			Namespace:       "test",
+			ResourceVersion: fakeResourceVersion,
 		},
 	}
 }
@@ -196,7 +197,7 @@ func TestBlobStorageProvider_reconcileBucket(t *testing.T) {
 				CredentialManager: tt.fields.CredentialManager,
 				ConfigManager:     tt.fields.ConfigManager,
 			}
-			dummyBlobStorage := &v1alpha1.BlobStorage{ObjectMeta: metav1.ObjectMeta{Name: "test", Namespace: "test"}}
+			dummyBlobStorage := &v1alpha1.BlobStorage{ObjectMeta: metav1.ObjectMeta{Name: "test", Namespace: "test", ResourceVersion: fakeResourceVersion}}
 			if _, err := p.reconcileBucketCreate(tt.args.ctx, dummyBlobStorage, tt.args.s3svc, tt.args.bucketCfg); (err != nil) != tt.wantErr {
 				t.Errorf("reconcileBucket() error = %v, wantErr %v", err, tt.wantErr)
 			}

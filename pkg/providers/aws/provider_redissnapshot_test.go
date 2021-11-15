@@ -24,13 +24,15 @@ var (
 	testPrimaryCacheNodeId                 = "test-primary"
 	testReplicationGroupStatusAvailable    = "available"
 	testReplicationGroupStatusNotAvailable = "not available"
+	fakeResourceVersion                    = "1000"
 )
 
 func buildTestRedisSnapshotCR() *v1alpha1.RedisSnapshot {
 	return &v1alpha1.RedisSnapshot{
 		ObjectMeta: controllerruntime.ObjectMeta{
-			Name:      "test",
-			Namespace: "test",
+			Name:            "test",
+			Namespace:       "test",
+			ResourceVersion: fakeResourceVersion,
 		},
 		Status: croType.ResourceTypeSnapshotStatus{
 			SnapshotID: "test-identifier",

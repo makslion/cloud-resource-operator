@@ -83,8 +83,9 @@ func buildRdsClientMock(modifyFn func(*rdsClientMock)) *rdsClientMock {
 func buildTestPostgresSnapshotCr() *v1alpha1.PostgresSnapshot {
 	return &v1alpha1.PostgresSnapshot{
 		ObjectMeta: controllerruntime.ObjectMeta{
-			Name:      "test",
-			Namespace: "test",
+			Name:            "test",
+			Namespace:       "test",
+			ResourceVersion: fakeResourceVersion,
 		},
 		Status: croType.ResourceTypeSnapshotStatus{
 			SnapshotID: "test-identifier",

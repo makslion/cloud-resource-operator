@@ -175,7 +175,7 @@ func TestOpenShiftPostgresProvider_CreatePostgres(t *testing.T) {
 		{
 			name: "test successful creation",
 			fields: fields{
-				Client:        fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestRedisCR()).Build(),
+				Client:        fake.NewClientBuilder().WithScheme(scheme).WithObjects(buildTestPostgresCR()).Build(),
 				Logger:        testLogger,
 				ConfigManager: buildDefaultConfigManager(),
 				PodCommander:  buildTestPodCommander(),

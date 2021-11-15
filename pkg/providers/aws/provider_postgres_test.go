@@ -430,6 +430,7 @@ func buildTestPostgresCR() *v1alpha1.Postgres {
 			Labels: map[string]string{
 				"productName": "test_product",
 			},
+			ResourceVersion: fakeResourceVersion,
 		},
 	}
 }

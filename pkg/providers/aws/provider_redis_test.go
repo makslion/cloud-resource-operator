@@ -284,8 +284,9 @@ func buildTestPrometheusRule() *monitoringv1.PrometheusRule {
 func buildTestRedisCR() *v1alpha1.Redis {
 	return &v1alpha1.Redis{
 		ObjectMeta: controllerruntime.ObjectMeta{
-			Name:      "test",
-			Namespace: "test",
+			Name:            "test",
+			Namespace:       "test",
+			ResourceVersion: fakeResourceVersion,
 		},
 	}
 }

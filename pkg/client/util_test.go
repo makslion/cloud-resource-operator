@@ -77,7 +77,7 @@ func TestReconcileBlobStorage(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -116,7 +116,7 @@ func TestReconcileBlobStorage(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"cro": "test",
 					},
@@ -217,7 +217,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -257,7 +257,7 @@ func TestReconcilePostgres(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -455,7 +455,7 @@ func TestReconcileRedis(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"productName": "test",
 					},
@@ -494,7 +494,7 @@ func TestReconcileRedis(t *testing.T) {
 				ObjectMeta: v1.ObjectMeta{
 					Name:            "test",
 					Namespace:       "test",
-					ResourceVersion: FakeResourceVersion,
+					ResourceVersion: "1",
 					Labels: map[string]string{
 						"cro": "test",
 					},
